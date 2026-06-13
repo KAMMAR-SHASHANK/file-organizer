@@ -168,16 +168,16 @@ main.py
 
 ## Roadmap
 
-- [x] CLI tool — scan and organize by file extension
-- [x] Skip hidden and system files
-- [x] Handle duplicate filenames safely
-- [x] Handle permission errors gracefully
-- [x] Safe to run multiple times on same folder
-- [ ] Frontend — drag and drop web interface
-- [ ] Undo — restore files to their original location
-- [ ] Watch mode — auto-organize as new files are added
-- [ ] Local AI — group photos by people using on-device face recognition
-      (no data sent to any server)
+- CLI tool — scan and organize by file extension
+- Skip hidden and system files
+- Handle duplicate filenames safely
+- Handle permission errors gracefully
+- Safe to run multiple times on same folder
+- Frontend — drag and drop web interface
+- Undo — restore files to their original location
+- Watch mode — auto-organize as new files are added
+- Local AI — group photos by people using on-device face recognition
+  (no data sent to any server)
 
 ---
 
@@ -194,3 +194,9 @@ main.py
 ---
 
 _Built as a structured week-long learning project._
+
+```
+
+---
+
+```
