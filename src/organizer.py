@@ -15,26 +15,41 @@ class FileOrganizer:
         files = self._scanner.scan()
         results = []
 
+        skipped = []
+
         for file in files:
             category = self._config.get_category(file['extension'])
             destination_folder = self._folder_path / category
 
-            destination_folder.mkdir(exist_ok=True)
-
             source = Path(file['path'])
-            destination = destination_folder / file['name']
 
-            if destination.exists():
-                destination = self._resolve_duplicate(destination)
+            if source.parent == destination_folder:
+                skipped.append(file['name'])
+                continue
 
-            shutil.move(str(source), str(destination))
+            try:
+                destination_folder.mkdir(exist_ok=True)
 
-            results.append({
-                'file': file['name'],
-                'from': file['path'],
-                'to': str(destination),
-                'category': category
-            })
+                destination = destination_folder / file['name']
+
+                if destination.exists():
+                    destination = self._resolve_duplicate(destination)
+
+                shutil.move(str(source), str(destination))
+
+                results.append({
+                    'file': file['name'],
+                    'from': file['path'],
+                    'to': str(destination),
+                    'category': category
+                })
+
+            except PermissionError:
+                print(f"  ✗  {file['name']}  — permission denied, skipping")
+            except Exception as e:
+                print(f"  ✗  {file['name']}  — failed: {e}")
+
+        return results, skipped
 
         return results
 

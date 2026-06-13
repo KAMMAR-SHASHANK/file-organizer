@@ -21,6 +21,13 @@ class FileScanner:
 
         for item in self._folder_path.iterdir():
             if item.is_file():
+
+                if item.name.startswith('.'):
+                    continue
+
+                if not item.suffix:
+                    continue
+
                 files.append({
                     'name': item.name,
                     'path': str(item),

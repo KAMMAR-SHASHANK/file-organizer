@@ -22,12 +22,12 @@ def main():
         organizer = FileOrganizer(folder_path)
         logger = Logger()
 
-        results = organizer.organize()
+        results, skipped = organizer.organize()
 
         for result in results:
             logger.record(result)
 
-        logger.print_summary()
+        logger.print_summary(skipped)
 
     except FileNotFoundError as e:
         print(f"\nError: {e}\n")
